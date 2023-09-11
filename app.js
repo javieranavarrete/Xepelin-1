@@ -23,6 +23,6 @@ app.get('/login', (req, res) => {
     }
 })
 
-server.listen(3000, function() {
-    console.log("Server running in port 3000")
+server.listen(8080, function() {
+    console.log("Server running in port 8080")
 })

@@ -46,30 +46,15 @@ button {
 </head>  
 <body>  
     <center> <h1> Login </h1> </center> 
-    <form>
+    <form action="/login" method="GET">
         <div class="container"> 
             <label>Username : </label> 
             <input type="text" placeholder="Enter Username" name="username" id="username" required>
             <label>Password : </label> 
             <input type="password" placeholder="Enter Password" name="password" id="password" required>
-            <button type="submit" onClick="validate()">Login</button> 
+            <button type="submit">Log In</button> 
         </div> 
     </form>   
 </body>   
-
-<script>
-    validate = function() {
-        var name = document.getElementById("username").value;
-        var pass = document.getElementById("password").value;
-
-        // This is bad, change it to not show the credentials in the URL
-        if (name == "Test" && pass == "1234") {
-            console.log("All good");
-            window.location.replace("thing.html");
-        } else {
-            alert("Invalid credentials");
-        }
-    }
-</script>
 
 </html>
