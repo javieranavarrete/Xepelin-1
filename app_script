@@ -1,10 +1,10 @@
 function setUpTrigger() {
+  // This is the name of the function below, change accordingly 
   ScriptApp.newTrigger('postTrigger')
   .forSpreadsheet('1zmIYWU05rbd7frSJ19F3LyODemOA_5_F9by9poNXyV0')
   .onEdit()
   .create();
 }
-
 function deleteTriggers() {
 
   var triggers = ScriptApp.getProjectTriggers()
@@ -16,7 +16,10 @@ function postTrigger(e) {
 
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('datos')
 
-  // Triggers only if one cell of column B changes
+  // This is what gsheet give me
+  // "{\"authMode\":\"FULL\",\"oldValue\":\"Testing\",\"range\":{\"columnEnd\":2,\"columnStart\":2,\"rowEnd\":5,\"rowStart\":5},\"source\":{},\"triggerUid\":\"1679418403613915094\",\"user\":{\"email\":\"email@email.com\",\"nickname\":\"user.name\"},\"value\":\"Hi\"}"
+  
+  // Get this by range, this is only a stub
   if (e.range.columnStart == 2 && e.range.columnEnd == 2 && e.range.rowStart == e.range.rowEnd){
     const row = sheet.getRange(e.range.rowStart, e.range.columnStart - 1, 1,3).getValues()[0]
     var data = {
@@ -30,11 +33,8 @@ function postTrigger(e) {
       'payload': JSON.stringify(data),
       'contentType': 'application/json'
     }
-    // TODO: change url to xepelin webhook
+    // TODO: change url
+    UrlFetchApp.fetch('https://hooks.zapier.com/hooks/catch/6872019/oahrt5g/', options);
     UrlFetchApp.fetch('https://webhook.site/59ca89b2-a43b-47a9-8333-49fe37a40691', options);
-  }
-  
-
-  
-  
+  }  
 }
